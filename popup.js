@@ -18,14 +18,14 @@ function checkReferral(url, callback, errorCallback) {
       if((url.indexOf("&tag=overVolt-21")>0)||(url.indexOf("?tag=overVolt-21")>0)){
         callback("Amazon");
       } else{
-        errorCallback("Amazon è supportato, ma sembra che tu non stia usando il referral :-( ");
+        errorCallback("Amazon");
       }
       break;
     case "www.banggood.com":
       if(url.indexOf(".html?p=63091629786202015112")>0){
         callback("Bangood");
       } else{
-        errorCallback("Banggood è supportato, ma sembra che tu non stia usando il referral :-( ");
+        errorCallback("Banggood");
       }
       break;
     default:
@@ -43,10 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
   tabUrl(function(url) {
     renderStatus('Controllo se stai usando il referral di Overvolt per questo sito... ');
 
-    checkReferral(url, function(nome) {
-      renderStatus('Ottimo! Stai usando il referral di OverVolt per questo sito! :-)');
-    }, function(messaggio) {
-      renderStatus(messaggio);
+    checkReferral(url,
+    function(nome) {
+      renderStatus('Ottimo! Stai usando il referral di OverVolt per ' + nome + '! :-)');
+    }, function(nome) {
+      renderStatus(nome + " è supportato, ma non stai usando il referral su questa pagina.");
     });
   });
 });

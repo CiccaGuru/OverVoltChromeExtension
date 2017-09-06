@@ -38,3 +38,38 @@ chrome.webRequest.onBeforeRequest.addListener(
    {urls: ["*://www.amazon.it/*", "*://www.banggood.com/*.html*"]},
    ["blocking"]
  );
+
+
+ function checkUrl(tabId, changeInfo, tab) {
+ var url = tab.url;
+ var splitted = url.split("/");
+ var success = false;
+ var active = false;
+ switch(splitted[2])  {
+   case "www.amazon.it":
+    active = true;
+    chrome.pageAction.show(tabId);
+    if((url.indexOf("&tag=overVolt-21")>0)||(url.indexOf("?tag=overVolt-21")>0)){
+      success = true;
+    }
+    break;
+   case "www.banggood.com":
+    active = true;
+    chrome.pageAction.show(tabId);
+    if(url.indexOf(".html?p=63091629786202015112")>0){
+     success = true;
+    }
+    break;
+}
+if(success && active){
+  console.log("active");
+  chrome.pageAction.setIcon({path: "images/success.png", tabId: tabId});
+}
+if(!success && active){
+  console.log("active");
+  chrome.pageAction.setIcon({path: "images/fail.png", tabId: tabId});
+}
+}
+
+ // Listen for any changes to the URL of any tab.
+ chrome.tabs.onUpdated.addListener(checkUrl);
