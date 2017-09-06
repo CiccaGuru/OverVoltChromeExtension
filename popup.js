@@ -15,7 +15,7 @@ function checkReferral(url, callback, errorCallback) {
   var splitted = url.split("/");
   switch(splitted[2])  {
     case "www.amazon.it":
-      if(url.indexOf("&tag=overVolt-21")>0){
+      if((url.indexOf("&tag=overVolt-21")>0)||(url.indexOf("?tag=overVolt-21")>0)){
         callback("Amazon");
       } else{
         errorCallback("Amazon è supportato, ma sembra che tu non stia usando il referral :-( ");
