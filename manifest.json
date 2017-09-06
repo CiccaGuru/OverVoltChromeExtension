@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "OverVolt Extension",
+  "description": "Quesra è l'estensione ufficiale di OverVolt",
+  "version": "1.0.0",
+  "icons":
+     {
+        "128": "images/icon128.png",
+        "16": "images/icon16.png",
+        "48": "images/icon48.png"
+  },
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["event.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "tabs", "webRequest", "webRequestBlocking", "*://www.amazon.it/*", "*://www.banggood.com/*"
+  ]
+}
