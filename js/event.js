@@ -1,5 +1,4 @@
 var isActive, reactivationTime, referralAmazon, referralBanggood;
-
 function putReferral(details) {
     var reactivated = 0;
     var url = details.url;
@@ -21,6 +20,7 @@ function putReferral(details) {
                     }
                     len = url.length;
                     tagIndex =url.indexOf("tag=");
+                    counter++;
                 }
                 var separator = url.indexOf("?")>0 ? "&" : "?";
                 newUrl = url + separator + "tag=overVolt-21";
@@ -97,7 +97,7 @@ function updateIcon(tabId, changeInfo, tab){
         iconPath =  active ?
                         (supported ?
                             (success ? "images/success.png" :  "images/fail.png")
-                        : "images/iconDisabled128.png") 
+                        : "images/iconDisabled128.png")
                     : "images/deactivated128.png";
         chrome.browserAction.setIcon({path: iconPath , tabId: tabId});
     });
@@ -114,6 +114,19 @@ chrome.storage.onChanged.addListener(function(changes, area) {
         updateSettings();
     }
 });
+
+chrome.runtime.onInstalled.addListener(function(details){
+    if(details.reason == "install"){
+        chrome.storage.sync.set({
+          isActive: 1,
+          reactivationTime: 30,
+          referralAmazon: 1,
+          referralBanggood: 1,
+          deactivationTime: -1
+      });
+    }
+});
+
 chrome.tabs.onUpdated.addListener(updateIcon);
 chrome.tabs.onActivated.addListener(updateIconOnSelection);
 updateSettings();
