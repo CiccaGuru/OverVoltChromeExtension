@@ -86,3 +86,15 @@ body,html{
   border: #ff9800;
   background-color: #ff9800;
 }
+
+#disclaimer{
+    font-size: 9pt;
+    padding: 20px;
+    margin: -15px;
+    margin-top: 10px;
+    border-radius: 2px;
+    border-style: solid;
+    border-color: #f44336;
+    border-width: 3px;
+    text-align:justify;
+}

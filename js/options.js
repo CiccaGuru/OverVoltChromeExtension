@@ -32,7 +32,7 @@ function restore_options() {
     referralBanggood: 1
   }, function(items) {
     $("#active").prop("checked", items.isActive);
-    $("#reactivate").val(items.doReactivate);
+    $("#reactivate").val(items.reactivationTime);
     $("#amazon").prop("checked", items.referralAmazon);
     $("#banggood").prop("checked", items.referralBanggood);
     wasActive = items.isActive;
