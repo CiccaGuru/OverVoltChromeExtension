@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "OverVolt Extension",
-  "description": "Quesra è l'estensione ufficiale di OverVolt",
+  "description": "Questa è l'estensione ufficiale di OverVolt",
   "version": "1.0.0",
   "icons":
      {
@@ -10,16 +10,19 @@
         "16": "images/icon16.png",
         "48": "images/icon48.png"
   },
-  "page_action": {
-    "default_icon": "images/icon.png",
+  "browser_action": {
+    "default_icon": "images/iconDisabled.png",
     "default_popup": "popup.html"
   },
-
+   "options_ui": {
+     "page": "options.html",
+     "chrome_style": false
+     },
   "background": {
-    "scripts": ["event.js"],
+    "scripts": ["js/event.js"],
     "persistent": true
   },
   "permissions": [
-    "tabs", "webRequest", "webRequestBlocking", "*://www.amazon.it/*", "*://www.banggood.com/*"
+    "tabs", "webRequest", "webRequestBlocking", "storage", "*://www.amazon.it/*", "*://www.banggood.com/*"
   ]
 }

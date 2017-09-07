@@ -1,23 +1,28 @@
 <!doctype html>
 
 <html>
-  <head>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-      body {
-        font-family: "Roboto", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
-        white-space: pre;
-        overflow: hidden;
-        max-width: 600px;
-      }
-    </style>
-    <meta charset="UTF-8">
-    <script src="popup.js"></script>
-  </head>
-  <body>
+<head>
+  <title>Getting Started Extension's Popup</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/popup.css"  media="screen,projection"/>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <div id="container">
+    <div id="image">
+      <img src="images/icon.png">
+    </div>
+    <div id="side">
       <div id="status"></div>
-  </body>
+      <div id="openOptionsContainer">
+        <a id="openOptions">Opzioni...</a>
+      </div>
+  </div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/popup.js"></script>
+</body>
 </html>

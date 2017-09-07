@@ -1,0 +1,25 @@
+body {
+  font-family: "Roboto", "Lucida Grande", Tahoma, sans-serif;
+  font-size: 100%;
+}
+#status {
+  white-space: pre;
+  overflow: hidden;
+  max-width: 600px;
+}
+#container {
+  display: flex;
+  flex-direction:row;
+  margin:15px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#image img{
+  width:64px;
+  margin-right: 20px;
+}
+
+#openOptionsContainer{
+  cursor: pointer;
+}

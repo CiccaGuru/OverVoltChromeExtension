@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OverVolt Extension Options</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/options.css"  media="screen,projection"/>
+  <meta charset="UTF-8">
+</head>
+<body class="indigo darken-3">
+
+  <div id="container">
+    <div id="title">
+      <h1 id="logo" class="amber-text center-align product-sans">Options</h1>
+    </div>
+    <div class="wrapper">
+      <div class="card white" id="option-panel">
+        <div class="card-content grey-text text-darken-3">
+          <div class="row">
+            <div class="col m6 s12">Attiva</div>
+            <div class="col m6 s12">
+              <div class="switch">
+                <label>
+                  Off
+                  <input type="checkbox" id="active">
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col m6 s12" style="margin-top: 1rem;">Se disattiva, attiva automaticamente dopo</div>
+            <div class="col m6 s12">
+             <div class="input-field">
+              <select id="reactivate">
+                <option value="-1">Mai</option>
+                <option value="30">30 minuti</option>
+                <option value="60">1 ora</option>
+                <option value="120">2 ore</option>
+                <option value="300">5 ore</option>
+                <option value="1440">1 giorno</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col m6 s12">
+            Applica i referral a
+          </div>
+          <div class="col m6 s12">
+            <p class="checkbox-parent">
+              <input type="checkbox" class="filled-in"  id="amazon" />
+              <label for="amazon">Amazon</label>
+            </p>
+            <p class="checkbox-parent">
+              <input type="checkbox" class="filled-in" id="banggood" />
+              <label for="banggood">Banggood</label>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-action right-align">
+        <button class="btn orange" id="save">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="js/options.js"></script>
+
+</body>
+</html>
