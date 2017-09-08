@@ -51,25 +51,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     checkReferral(url,
     function(nome) {
-      renderStatus('Ottimo! Stai usando il referral di OverVolt per ' + nome + '! :-)');
+      renderStatus('Ottimo! Stai aiutando OverVolt su ' + nome + '! :-)');
       $("#image img").attr('src', 'images/success.png');
     }, function(nome) {
-      renderStatus(nome + " è supportato, ma non stai usando il referral su questa pagina.");
+        renderStatus(nome + " è supportato, ma non stai aiutando OverVolt usando i referral.");
       $("#image img").attr('src', 'images/fail.png');
     }, function(){
-      renderStatus('Questo sito non è supportato. Se pensi sia un errore, contatta lo sviluppatore.')
+      renderStatus('Pare che questo sito non sia supportato.')
       $("#image img").attr('src', 'images/iconDisabled.png');
     }, function(){
-      renderStatus('L\'estensione è disabilitata. Riattivala nelle impostazioni.')
+      renderStatus('L\'estensione è disabilitata e non stai aiutando OverVolt :-(')
       $("#image img").attr('src', 'images/deactivated.png');
     });
   });
 });
 
-$('#openOptionsContainer').click(function() {
-  if (chrome.runtime.openOptionsPage) {
-    chrome.runtime.openOptionsPage();
-  } else {
-    window.open(chrome.runtime.getURL('options.html'));
-  }
-});
+var wasActive, lastDeactivationTime;
+
+document.addEventListener('DOMContentLoaded', restore_options);
+document.getElementById('save').addEventListener('click',
+    save_options);
+
+    $(document).ready(function() {
+      $('select').material_select();
+    });

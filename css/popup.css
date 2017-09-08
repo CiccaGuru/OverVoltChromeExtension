@@ -3,9 +3,8 @@ body {
   font-size: 100%;
 }
 #status {
-  white-space: pre;
-  overflow: hidden;
-  max-width: 600px;
+  width: 300px;
+  word-wrap: break-word;
 }
 #container {
   display: flex;
@@ -22,4 +21,55 @@ body {
 
 #openOptionsContainer{
   cursor: pointer;
+}
+
+
+#containerOptions{
+    padding: 20px;
+    margin:auto;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+h5{
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 993px) {
+    #containerOptions{
+        width:45%;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    #containerOptions{
+        width:95%;
+    }
+}
+
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    #containerOptions{
+        width:75%;
+    }
+}
+
+
+.switch label input[type=checkbox]:checked + .lever {
+  background-color: #ffb74d;
+}
+
+.switch label input[type=checkbox]:checked + .lever:after {
+  background-color: #fb8c00;
+}
+
+.dropdown-content li>a, .dropdown-content li>span{
+  color: #ff9800;
+}
+
+[type="checkbox"].filled-in:checked+label:after{
+  border: #ff9800;
+  background-color: #ff9800;
 }

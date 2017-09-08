@@ -15,14 +15,62 @@
     </div>
     <div id="side">
       <div id="status"></div>
-      <div id="openOptionsContainer">
-        <a id="openOptions">Opzioni...</a>
-      </div>
-  </div>
 
+  </div>
+  </div>
+  <div id="containerOptions" class="container">
+      <h5 class="product-sans orange-text">Opzioni</h5>
+        <div class="row">
+          <div class="col m6 s12">Attiva</div>
+          <div class="col m6 s12">
+            <div class="switch">
+              <label>
+                Off
+                <input type="checkbox" id="active">
+                <span class="lever"></span>
+                On
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col m6 s12" style="margin-top: 1rem;">Se disattiva, attiva automaticamente dopo</div>
+          <div class="col m6 s12">
+           <div class="input-field">
+            <select id="reactivate">
+              <option value="-1">Mai</option>
+              <option value="30">30 minuti</option>
+              <option value="60">1 ora</option>
+              <option value="120">2 ore</option>
+              <option value="300">5 ore</option>
+              <option value="1440">1 giorno</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m6 s12">
+          Applica i referral a
+        </div>
+        <div class="col m6 s12">
+          <p class="checkbox-parent">
+            <input type="checkbox" class="filled-in"  id="amazon" />
+            <label for="amazon">Amazon</label>
+          </p>
+          <p class="checkbox-parent">
+            <input type="checkbox" class="filled-in" id="banggood" />
+            <label for="banggood">Banggood</label>
+          </p>
+        </div>
+      </div>
+    <div class="card-action right-align">
+      <button class="btn orange" id="save">Save</button>
+    </div>
+</div>
 
   <script src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/functions.js"></script>
   <script src="js/popup.js"></script>
 </body>
 </html>
