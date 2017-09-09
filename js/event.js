@@ -4,6 +4,7 @@ function putReferral(details) {
     var url = details.url;
     var newUrl = details.url;
     var splitted = url.split("/");
+    console.log(details);
     counter = 0;
     switch(splitted[2])  {
         case "www.amazon.it":{
@@ -11,6 +12,11 @@ function putReferral(details) {
                 len = url.length;
                 tagIndex = url.indexOf("tag=");
                 while(tagIndex > 0){
+                    if(url.indexOf("tag=chromevideonauting-21")>0){
+                        var urlRedirect = chrome.extension.getURL('error.html');
+                        chrome.tabs.update(details.tabId, {url: urlRedirect});
+
+                    }
                     nextParameterIndex = url.slice(tagIndex).indexOf("&");
                     if((nextParameterIndex+tagIndex+1>=len)||(nextParameterIndex <0)){
                         url = url.slice(0, tagIndex-1);
