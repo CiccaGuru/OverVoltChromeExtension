@@ -51,16 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     checkReferral(url,
     function(nome) {
-      renderStatus('Ottimo! Stai aiutando OverVolt su ' + nome + '! :-)');
+      renderStatus('Ottimo! Stai supportando OverVolt con questo acquisto su ' + nome + '! :-)');
       $("#image img").attr('src', 'images/success.png');
     }, function(nome) {
-        renderStatus(nome + " è supportato, ma non stai aiutando OverVolt usando i referral.");
+        renderStatus(nome + " è supportato da questa estensione, ma questa pagina no.");
       $("#image img").attr('src', 'images/fail.png');
     }, function(){
       renderStatus('Pare che questo sito non sia supportato.')
       $("#image img").attr('src', 'images/iconDisabled.png');
     }, function(){
-      renderStatus('L\'estensione è disabilitata e non stai aiutando OverVolt :-(')
+      renderStatus('L\'estensione è disabilitata e non stai supportando OverVolt con questo acquisto su ' + nome +':-(')
       $("#image img").attr('src', 'images/deactivated.png');
     });
   });
