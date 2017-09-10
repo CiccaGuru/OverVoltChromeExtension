@@ -4,7 +4,6 @@ function putReferral(details) {
     var url = details.url;
     var newUrl = details.url;
     var splitted = url.split("/");
-    console.log(details);
     counter = 0;
     switch(splitted[2])  {
         case "www.amazon.it":{
