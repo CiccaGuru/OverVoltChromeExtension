@@ -1,9 +1,6 @@
-var wasActive, lastDeactivationTime;
-
 document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click',
-    save_options);
+document.getElementById('save').addEventListener('click', save_options);
 
-    $(document).ready(function() {
-      $('select').material_select();
-    });
+$(document).ready(function() {
+  $('select').material_select();
+});

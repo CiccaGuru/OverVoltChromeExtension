@@ -5,16 +5,13 @@ function putReferral(details) {
     var newUrl = details.url;
     var splitted = url.split("/");
     counter = 0;
-    switch(splitted[2])  {
-        case "www.amazon.it":{
-            if(referralAmazon){
+    if((splitted[2] == "www.amazon.it")&&(referralAmazon)){
                 len = url.length;
                 tagIndex = url.indexOf("tag=");
                 while(tagIndex > 0){
                     if(url.indexOf("tag=chromevideonauting-21")>0){
                         var urlRedirect = chrome.extension.getURL('error.html');
                         chrome.tabs.update(details.tabId, {url: urlRedirect});
-
                     }
                     nextParameterIndex = url.slice(tagIndex).indexOf("&");
                     if((nextParameterIndex+tagIndex+1>=len)||(nextParameterIndex <0)){
@@ -29,17 +26,13 @@ function putReferral(details) {
                 }
                 var separator = url.indexOf("?")>0 ? "&" : "?";
                 newUrl = url + separator + "tag=overVolt-21";
-            }
-            break;
         }
-        case "www.banggood.com":{
+        else if((splitted[2] == "www.banggood.com")&&(referralBanggood)){
             var index = url.indexOf(".html");
-            if((referralBanggood)&&(url.indexOf(".html?p=63091629786202015112")<0)&&(index > 0)){
+            if( (url.indexOf(".html?p=63091629786202015112")<0)&&(index > 0)){
                 newUrl = url.slice(0, index) +  ".html?p=63091629786202015112";
             }
-            break;
         }
-    }
     return {redirectUrl: newUrl};
 }
 
@@ -64,8 +57,7 @@ function updateSettings(){
             chrome.storage.sync.set({
                 isActive: 1,
             }, function() {
-                // Update status to let user know options were saved.
-                Materialize.toast('Impostazioni salvate!', 2000) // 4000 is the duration of the toast
+                Materialize.toast('Impostazioni salvate!', 2000);
             });
         }
         toogleListener(isActive);
@@ -81,29 +73,21 @@ function updateIcon(tabId, changeInfo, tab){
     var supported = false;
     var iconPath = "images/iconDisabledd128.png";
     chrome.storage.sync.get(function(settings) {
-        switch(splitted[2])  {
-            case "www.amazon.it":{
-                supported = true;
-                active = (isActive && referralAmazon) ? true : false;
-                if((url.indexOf("&tag=overVolt-21")>0)||(url.indexOf("?tag=overVolt-21")>0)){
-                    success = true;
-                }
-                break;
-            }
-            case "www.banggood.com":{
-                supported = true;
-                active = (isActive && referralBanggood) ? true : false;
-                if(url.indexOf(".html?p=63091629786202015112")>0){
-                    success = true;
-                }
-                break;
-            }
+        if(splitted[2] == "www.amazon.it"){
+            supported = true;
+            active = (isActive && referralAmazon);
+            success = ((url.indexOf("&tag=overVolt-21")>0)||(url.indexOf("?tag=overVolt-21")>0));
         }
-        iconPath =  active ?
-                        (supported ?
-                            (success ? "images/success.png" :  "images/fail.png")
-                        : "images/iconDisabled128.png")
-                    : "images/deactivated128.png";
+        else if(splitted[2] == "www.banggood.com"){
+            supported = true;
+            active = (isActive && referralBanggood);
+            success = url.indexOf(".html?p=63091629786202015112")>0;
+        }
+    iconPath =  active ?
+    (supported ?
+        (success ? "images/success.png" :  "images/fail.png")
+        : "images/iconDisabled128.png")
+        : "images/deactivated128.png";
         chrome.browserAction.setIcon({path: iconPath , tabId: tabId});
     });
 }
