@@ -1,7 +1,8 @@
 body {
-  font-family: "Roboto", "Lucida Grande", Tahoma, sans-serif;
+  font-family: "Roboto";
   font-size: 100%;
 }
+
 #status {
   width: 300px;
   word-wrap: break-word;
