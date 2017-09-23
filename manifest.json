@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "OverVolt Extension",
-  "description": "Con l'estensione ufficiale di OverVolt per Chrome supporti OverVolt usando in automatico i referral su Amazon e Banggood. A te non costa nulla, per OverVolt è un grande aiuto!",
-  "version": "1.2.4",
+  "name": "overVolt Extension",
+  "description": "Con l'estensione ufficiale di overVolt supporti il canale con i tuoi acquisti. A te non costa nulla, per overVolt è un grande aiuto.",
+  "version": "1.2.5",
   "author": "CiccaGuru",
   "icons":
      {
