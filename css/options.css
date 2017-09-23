@@ -9,7 +9,6 @@ body,html{
   font-family: 'Product Sans', Arial, sans-serif;
 }
 
-
 .wrapper{
   display:flex;
   flex-direction:column;
@@ -47,15 +46,20 @@ body,html{
 }
 
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #ffb74d;
+  background-color: #5c6bc0;
 }
 
 .switch label input[type=checkbox]:checked + .lever:after {
-  background-color: #fb8c00;
+  background-color: #283593;
 }
 
 .dropdown-content li>a, .dropdown-content li>span{
-  color: #ff9800;
+  color: #3949ab;
+}
+
+[type="checkbox"].filled-in:checked+label:after{
+  border: #3949ab;
+  background-color: #3949ab;
 }
 
 .checkbox-parent{
@@ -69,10 +73,6 @@ body,html{
     margin-top: 15px;
 }
 
-[type="checkbox"].filled-in:checked+label:after{
-  border: #ff9800;
-  background-color: #ff9800;
-}
 
 #disclaimer{
     font-size: 9pt;

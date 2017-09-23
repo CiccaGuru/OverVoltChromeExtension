@@ -1,5 +1,5 @@
 body {
-  font-family: "Roboto";
+  font-family: "Roboto", "Lucida Grande", Tahoma, sans-serif;
   font-size: 100%;
 }
 
@@ -59,18 +59,18 @@ h5{
 
 
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #ffb74d;
+  background-color: #5c6bc0;
 }
 
 .switch label input[type=checkbox]:checked + .lever:after {
-  background-color: #fb8c00;
+  background-color: #283593;
 }
 
 .dropdown-content li>a, .dropdown-content li>span{
-  color: #ff9800;
+  color: #3949ab;
 }
 
 [type="checkbox"].filled-in:checked+label:after{
-  border: #ff9800;
-  background-color: #ff9800;
+  border: #3949ab;
+  background-color: #3949ab;
 }
