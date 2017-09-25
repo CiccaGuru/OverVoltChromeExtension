@@ -28,10 +28,26 @@ function putReferral(details) {
                 newUrl = url + separator + "tag=overVolt-21";
         }
         else if((splitted[2] == "www.banggood.com")&&(referralBanggood)){
-            var index = url.indexOf(".html");
-            if( (url.indexOf(".html?p=63091629786202015112")<0)&&(index > 0)){
-                newUrl = url.slice(0, index) +  ".html?p=63091629786202015112";
+
+            len = url.length;
+            htmlIndex = url.indexOf(".html");
+            tagIndex = url.indexOf("p=");
+            if(htmlIndex > 0){
+            while(tagIndex > 0){
+                nextParameterIndex = url.slice(tagIndex).indexOf("&");
+                if((nextParameterIndex+tagIndex+1>=len)||(nextParameterIndex <0)){
+                    url = url.slice(0, tagIndex-1);
+                }
+                else {
+                    url = url.slice(0, tagIndex-1) + url.slice(nextParameterIndex + tagIndex);
+                }
+                len = url.length;
+                tagIndex =url.indexOf("p=");
+                counter++;
             }
+            var separator = url.indexOf("?")>0 ? "&" : "?";
+            newUrl = url + separator + "p=63091629786202015112";
+        }
         }
     return {redirectUrl: newUrl};
 }
