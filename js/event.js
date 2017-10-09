@@ -1,31 +1,34 @@
 var isActive, reactivationTime, referralAmazon, referralBanggood;
 function putReferral(details) {
+
     var reactivated = 0;
     var url = details.url;
     var newUrl = details.url;
     var splitted = url.split("/");
-    counter = 0;
-    if((splitted[2] == "www.amazon.it")&&(referralAmazon)){
+    if(details.type == "main_frame")
+    {
+        if((splitted[2] == "www.amazon.it")&&(referralAmazon)){
                 len = url.length;
-                tagIndex = url.indexOf("tag=");
-                while(tagIndex > 0){
-                    if(url.indexOf("tag=chromevideonauting-21")>0){
-                        var urlRedirect = chrome.extension.getURL('error.html');
-                        chrome.tabs.update(details.tabId, {url: urlRedirect});
+                if(url.search(/(\/dp\/|\/gp\/)/) > 0){
+                    tagIndex = url.indexOf("tag=");
+                    while(tagIndex > 0){
+                        if(url.indexOf("tag=chromevideonauting-21")>0){
+                            var urlRedirect = chrome.extension.getURL('error.html');
+                            chrome.tabs.update(details.tabId, {url: urlRedirect});
+                        }
+                        nextParameterIndex = url.slice(tagIndex).indexOf("&");
+                        if((nextParameterIndex+tagIndex+1>=len)||(nextParameterIndex <0)){
+                            url = url.slice(0, tagIndex-1);
+                        }
+                        else {
+                            url = url.slice(0, tagIndex-1) + url.slice(nextParameterIndex + tagIndex);
+                        }
+                        len = url.length;
+                        tagIndex =url.indexOf("tag=");
                     }
-                    nextParameterIndex = url.slice(tagIndex).indexOf("&");
-                    if((nextParameterIndex+tagIndex+1>=len)||(nextParameterIndex <0)){
-                        url = url.slice(0, tagIndex-1);
-                    }
-                    else {
-                        url = url.slice(0, tagIndex-1) + url.slice(nextParameterIndex + tagIndex);
-                    }
-                    len = url.length;
-                    tagIndex =url.indexOf("tag=");
-                    counter++;
+                    var separator = url.indexOf("?")>0 ? "&" : "?";
+                    newUrl = url + separator + "tag=overVolt-21";
                 }
-                var separator = url.indexOf("?")>0 ? "&" : "?";
-                newUrl = url + separator + "tag=overVolt-21";
         }
         else if((splitted[2] == "www.banggood.com")&&(referralBanggood)){
 
@@ -49,13 +52,18 @@ function putReferral(details) {
             newUrl = url + separator + "p=63091629786202015112";
         }
         }
+    }
     return {redirectUrl: newUrl};
 }
 
 function toogleListener(value) {
     if(value){
         chrome.webRequest.onBeforeRequest.addListener(putReferral,
-            {urls: ["*://www.amazon.it/*", "*://www.banggood.com/*.html*"]},
+            {urls: ["*://www.amazon.it/*/gp/*",
+                    "*://www.amazon.it/gp/*",
+                    "*://www.amazon.it/*/dp/*",
+                    "*://www.amazon.it/dp/*",
+                    "*://www.banggood.com/*.html*"]},
             ["blocking"]);
     }
     else {
