@@ -28,7 +28,6 @@ function putReferral(details) {
                 newUrl = url + separator + "tag=overVolt-21";
         }
         else if((splitted[2] == "www.banggood.com")&&(referralBanggood)){
-
             len = url.length;
             htmlIndex = url.indexOf(".html");
             tagIndex = url.indexOf("p=");
@@ -97,7 +96,7 @@ function updateIcon(tabId, changeInfo, tab){
         else if(splitted[2] == "www.banggood.com"){
             supported = true;
             active = (isActive && referralBanggood);
-            success = url.indexOf(".html?p=63091629786202015112")>0;
+            success = url.indexOf("p=63091629786202015112")>0;
         }
     iconPath =  active ?
     (supported ?

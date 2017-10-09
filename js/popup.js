@@ -25,7 +25,7 @@ function checkReferral(url, callback, supportedErrorCallback, unsupportedErrorCa
       }
       break;
     case "www.banggood.com":
-      if(url.indexOf(".html?p=63091629786202015112")>0){
+      if(url.indexOf("p=63091629786202015112")>0){
         callback("Bangood");
       } else{
         supportedErrorCallback("Banggood");
