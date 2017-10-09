@@ -28,6 +28,7 @@ function putReferral(details) {
                 newUrl = url + separator + "tag=overVolt-21";
         }
         else if((splitted[2] == "www.banggood.com")&&(referralBanggood)){
+
             len = url.length;
             htmlIndex = url.indexOf(".html");
             tagIndex = url.indexOf("p=");
