@@ -18,11 +18,12 @@ function checkReferral(url, callback, supportedErrorCallback, unsupportedErrorCa
     if(settings.isActive){
   switch(splitted[2])  {
     case "www.amazon.it":
-      if((url.indexOf("&tag=overVolt-21")>0)||(url.indexOf("?tag=overVolt-21")>0)){
+      /*if((url.indexOf("&tag=overVolt-21")>0)||(url.indexOf("?tag=overVolt-21")>0)){
         callback("Amazon");
       } else{
         supportedErrorCallback("Amazon");
-      }
+    }*/
+        deactivatedCallback("Amazon");
       break;
     case "www.banggood.com":
       if(url.indexOf("p=63091629786202015112")>0){
@@ -36,7 +37,14 @@ function checkReferral(url, callback, supportedErrorCallback, unsupportedErrorCa
 
   }
 }else{
-  deactivatedCallback();
+    switch(splitted[2])  {
+      case "www.amazon.it":
+        deactivatedCallback("Amazon");
+        break;
+    default:
+        deactivatedCallback("Other");
+        break;
+    }
 }
 });
 }
@@ -56,11 +64,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }, function(nome) {
         renderStatus(nome + " è supportato da questa estensione, ma questa pagina no.");
       $("#image img").attr('src', 'images/fail.png');
-    }, function(){
+  }, function(){
       renderStatus('Pare che questo sito non sia supportato.')
       $("#image img").attr('src', 'images/iconDisabled.png');
-    }, function(){
-      renderStatus('L\'estensione è disabilitata e non stai supportando overVolt con questo acquisto su ' + nome +':-(')
+  }, function(nome){
+        console.log("Lol");
+        if(nome=="Amazon"){
+            renderStatus('Purtroppo abbiamo avuto problemi con Amazon e quindi l\'estensione è attualmente disabilitata su questo sito. :-(')
+        }else{
+            renderStatus('L\'estensione è disabilitata e non stai supportando overVolt con questo acquisto su ' + nome +':-(')
+        }
       $("#image img").attr('src', 'images/deactivated.png');
     });
   });

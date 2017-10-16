@@ -7,7 +7,7 @@ function putReferral(details) {
     var splitted = url.split("/");
     if(details.type == "main_frame")
     {
-        if((splitted[2] == "www.amazon.it")&&(referralAmazon)){
+        if((splitted[2] == "www.amazon.it")&&(0)){//referralAmazon)){
                 len = url.length;
                 if(url.search(/(\/dp\/|\/gp\/)/) > 0){
                     tagIndex = url.indexOf("tag=");
@@ -46,7 +46,6 @@ function putReferral(details) {
                 }
                 len = url.length;
                 tagIndex =url.indexOf("p=");
-                counter++;
             }
             var separator = url.indexOf("?")>0 ? "&" : "?";
             newUrl = url + separator + "p=63091629786202015112";
@@ -74,7 +73,7 @@ function toogleListener(value) {
 function updateSettings(){
     chrome.storage.sync.get(function(settings) {
         isActive = settings.isActive;
-        referralAmazon = settings.referralAmazon;
+        referralAmazon = 0;//settings.referralAmazon;
         referralBanggood = settings.referralBanggood;
         if((!isActive)&&(Date.now >= settings.deactivationTime + 60*settings.reactivationTime)){
             isActive = true;
@@ -133,7 +132,7 @@ chrome.runtime.onInstalled.addListener(function(details){
         chrome.storage.sync.set({
           isActive: 1,
           reactivationTime: 30,
-          referralAmazon: 1,
+          referralAmazon: 0,
           referralBanggood: 1,
           deactivationTime: -1
       });

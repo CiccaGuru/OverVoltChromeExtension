@@ -3,7 +3,7 @@
 function save_options() {
     var active = $("#active").prop("checked");
     var reactivate = $("#reactivate").val();
-    var amazon = $("#amazon").prop("checked");
+    var amazon = 0; //$("#amazon").prop("checked");
     var banggood = $("#banggood").prop("checked");
     var wasActive, lastDeactivationTime;
     chrome.storage.sync.get(function(items) {
@@ -33,7 +33,7 @@ function restore_options() {
     chrome.storage.sync.get(function(items) {
             $("#active").prop("checked", items.isActive);
             $("#reactivate").val(items.reactivationTime);
-            $("#amazon").prop("checked", items.referralAmazon);
+            $("#amazon").prop("checked", 0);//items.referralAmazon);
             $("#banggood").prop("checked", items.referralBanggood);
     });
 }
