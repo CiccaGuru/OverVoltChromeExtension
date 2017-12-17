@@ -15,15 +15,17 @@ function checkReferral(url, callback, supportedErrorCallback, unsupportedErrorCa
   var splitted = url.split("/");
   chrome.storage.sync.get(function(settings) {
 
-    if(settings.isActive){
+if(settings.isActive){
   switch(splitted[2])  {
     case "www.amazon.it":
-      /*if((url.indexOf("&tag=overVolt-21")>0)||(url.indexOf("?tag=overVolt-21")>0)){
-        callback("Amazon");
+      deactivatedCallback("Amazon");
+      break;
+    case "www.gearbest.com":
+      if((url.indexOf("&lkid=12357131")>0)||(url.indexOf("?lkid=12357131")>0)){
+        callback("Gearbest");
       } else{
-        supportedErrorCallback("Amazon");
-    }*/
-        deactivatedCallback("Amazon");
+        supportedErrorCallback("Gearbest");
+    }
       break;
     case "www.banggood.com":
       if(url.indexOf("p=63091629786202015112")>0){
@@ -38,7 +40,13 @@ function checkReferral(url, callback, supportedErrorCallback, unsupportedErrorCa
   }
 }else{
     switch(splitted[2])  {
-      case "www.amazon.it":
+      case "www.gearbest.it":
+        deactivatedCallback("Gearbest");
+        break;
+    case "www.banggood.com":
+        deactivatedCallback("Banggood");
+        break;
+    case "www.amazon.it":
         deactivatedCallback("Amazon");
         break;
     default:
@@ -68,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
       renderStatus('Pare che questo sito non sia supportato.')
       $("#image img").attr('src', 'images/iconDisabled.png');
   }, function(nome){
-        console.log("Lol");
         if(nome=="Amazon"){
             renderStatus('Purtroppo abbiamo avuto problemi con Amazon e quindi l\'estensione è attualmente disabilitata su questo sito. :-(')
         }else{

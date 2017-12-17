@@ -1,4 +1,4 @@
-var isActive, reactivationTime, referralAmazon, referralBanggood;
+var isActive, reactivationTime, referralGearbest, referralBanggood;
 function putReferral(details) {
 
     var reactivated = 0;
@@ -7,28 +7,26 @@ function putReferral(details) {
     var splitted = url.split("/");
     if(details.type == "main_frame")
     {
-        if((splitted[2] == "www.amazon.it")&&(0)){//referralAmazon)){
-                len = url.length;
-                if(url.search(/(\/dp\/|\/gp\/)/) > 0){
-                    tagIndex = url.indexOf("tag=");
-                    while(tagIndex > 0){
-                        if(url.indexOf("tag=chromevideonauting-21")>0){
-                            var urlRedirect = chrome.extension.getURL('error.html');
-                            chrome.tabs.update(details.tabId, {url: urlRedirect});
-                        }
-                        nextParameterIndex = url.slice(tagIndex).indexOf("&");
-                        if((nextParameterIndex+tagIndex+1>=len)||(nextParameterIndex <0)){
-                            url = url.slice(0, tagIndex-1);
-                        }
-                        else {
-                            url = url.slice(0, tagIndex-1) + url.slice(nextParameterIndex + tagIndex);
-                        }
-                        len = url.length;
-                        tagIndex =url.indexOf("tag=");
-                    }
-                    var separator = url.indexOf("?")>0 ? "&" : "?";
-                    newUrl = url + separator + "tag=overVolt-21";
+
+        if((splitted[2] == "www.gearbest.com")&&(referralGearbest)){
+            len = url.length;
+            htmlIndex = url.indexOf(".html");
+            tagIndex = url.indexOf("lkid=");
+            if(htmlIndex > 0){
+            while(tagIndex > 0){
+                nextParameterIndex = url.slice(tagIndex).indexOf("&");
+                if((nextParameterIndex+tagIndex+1>=len)||(nextParameterIndex <0)){
+                    url = url.slice(0, tagIndex-1);
                 }
+                else {
+                    url = url.slice(0, tagIndex-1) + url.slice(nextParameterIndex + tagIndex);
+                }
+                len = url.length;
+                tagIndex =url.indexOf("lkid=");
+            }
+            var separator = url.indexOf("?")>0 ? "&" : "?";
+            newUrl = url + separator + "lkid=12357131";
+        }
         }
         else if((splitted[2] == "www.banggood.com")&&(referralBanggood)){
 
@@ -58,10 +56,7 @@ function putReferral(details) {
 function toogleListener(value) {
     if(value){
         chrome.webRequest.onBeforeRequest.addListener(putReferral,
-            {urls: ["*://www.amazon.it/*/gp/*",
-                    "*://www.amazon.it/gp/*",
-                    "*://www.amazon.it/*/dp/*",
-                    "*://www.amazon.it/dp/*",
+            {urls: ["*://www.gearbest.com/*.html*",
                     "*://www.banggood.com/*.html*"]},
             ["blocking"]);
     }
@@ -73,7 +68,7 @@ function toogleListener(value) {
 function updateSettings(){
     chrome.storage.sync.get(function(settings) {
         isActive = settings.isActive;
-        referralAmazon = 0;//settings.referralAmazon;
+        referralGearbest = settings.referralGearbest;
         referralBanggood = settings.referralBanggood;
         if((!isActive)&&(Date.now >= settings.deactivationTime + 60*settings.reactivationTime)){
             isActive = true;
@@ -96,10 +91,10 @@ function updateIcon(tabId, changeInfo, tab){
     var supported = false;
     var iconPath = "images/iconDisabledd128.png";
     chrome.storage.sync.get(function(settings) {
-        if(splitted[2] == "www.amazon.it"){
+        if(splitted[2] == "www.gearbest.com"){
             supported = true;
-            active = (isActive && referralAmazon);
-            success = ((url.indexOf("&tag=overVolt-21")>0)||(url.indexOf("?tag=overVolt-21")>0));
+            active = (isActive && referralGearbest);
+            success = url.indexOf("lkid=12357131")>0;
         }
         else if(splitted[2] == "www.banggood.com"){
             supported = true;
@@ -132,7 +127,7 @@ chrome.runtime.onInstalled.addListener(function(details){
         chrome.storage.sync.set({
           isActive: 1,
           reactivationTime: 30,
-          referralAmazon: 0,
+          referralGearbest: 1,
           referralBanggood: 1,
           deactivationTime: -1
       });
