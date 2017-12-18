@@ -56,10 +56,13 @@ function putReferral(details) {
 function toogleListener(value) {
     if(value){
         chrome.webRequest.onBeforeRequest.addListener(putReferral,
-            {urls: ["*://www.gearbest.com/*/pp_*.html*",
-                    "*://www.banggood.com/*-p-*.html*",
-                    "*://www.deals.banggood.com/deals/*",
-                    "*://deals.banggood.com/deals/*"]},
+            {urls: [
+                "*://www.gearbest.com/*/pp_*.html*",
+                "*://www.banggood.com/*-p-*.html*",
+                "*://www.deals.banggood.com/deals/*",
+                "*://deals.banggood.com/*deals/*",
+                "*://www.gearbest.com/*promotion*'"]
+            },
             ["blocking"]);
     }
     else {
