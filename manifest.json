@@ -3,7 +3,7 @@
 
   "name": "OverVolt Extension",
   "description": "Con l'estensione ufficiale di overVolt supporti il canale con i tuoi acquisti. A te non costa nulla, per overVolt è un grande aiuto!",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "icons":
      {
         "128": "images/icon128.png",
@@ -23,6 +23,6 @@
     "persistent": true
   },
   "permissions": [
-    "tabs", "webRequest", "webRequestBlocking", "storage", "*://www.amazon.it/*", "*://www.banggood.com/*", "*://www.gearbest.com/*"
+    "tabs", "webRequest", "webRequestBlocking", "storage", "*://www.amazon.it/*", "*://*.banggood.com/*", "*://www.gearbest.com/*"
   ]
 }

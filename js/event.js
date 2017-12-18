@@ -5,9 +5,9 @@ function putReferral(details) {
     var url = details.url;
     var newUrl = details.url;
     var splitted = url.split("/");
+    console.log("CISO");
     if(details.type == "main_frame")
     {
-
         if((splitted[2] == "www.gearbest.com")&&(referralGearbest)){
             len = url.length;
             htmlIndex = url.indexOf(".html");
@@ -28,7 +28,7 @@ function putReferral(details) {
             newUrl = url + separator + "lkid=12357131";
         }
         }
-        else if((splitted[2] == "www.banggood.com")&&(referralBanggood)){
+        else if((splitted[2].indexOf("banggood") > 0)&&(referralBanggood)){
 
             len = url.length;
             htmlIndex = url.indexOf(".html");
@@ -57,7 +57,9 @@ function toogleListener(value) {
     if(value){
         chrome.webRequest.onBeforeRequest.addListener(putReferral,
             {urls: ["*://www.gearbest.com/*/pp_*.html*",
-                    "*://www.banggood.com/*-p-*.html*"]},
+                    "*://www.banggood.com/*-p-*.html*",
+                    "*://www.deals.banggood.com/deals/*",
+                    "*://deals.banggood.com/deals/*"]},
             ["blocking"]);
     }
     else {
@@ -96,7 +98,7 @@ function updateIcon(tabId, changeInfo, tab){
             active = (isActive && referralGearbest);
             success = url.indexOf("lkid=12357131")>0;
         }
-        else if(splitted[2] == "www.banggood.com"){
+        else if(splitted[2].indexOf("banggood")>0){
             supported = true;
             active = (isActive && referralBanggood);
             success = url.indexOf("p=63091629786202015112")>0;
